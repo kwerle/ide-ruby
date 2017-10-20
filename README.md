@@ -1,3 +1,5 @@
+# STOLEN FROM THE ide-yaml PROJECT!!!  Security!
+
 # ide-yaml
 
 [![apm-download-count][apm-download-count]][apm-download-link]
