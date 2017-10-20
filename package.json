@@ -1,40 +1,43 @@
 {
-  "name": "ide-yaml",
-  "version": "0.4.1",
-  "description": "Atom-IDE support for YAML language",
+  "name": "ide-ruby",
+  "version": "0.0.1",
+  "description": "Atom-IDE support for ruby language",
   "main": "src/main.js",
   "scripts": {
     "lint": "eslint src/",
     "test": "npm run lint"
   },
-  "repository": "https://github.com/liuderchi/ide-yaml.git",
+  "repository": "https://github.com/liuderchi/ide-ruby.git",
   "keywords": [
-    "yaml",
-    "yaml-parsing",
+    "ruby",
+    "ruby-parsing",
     "ide",
     "language-server-protocol",
     "outline-view"
   ],
   "author": {
-    "name": "Te-Chi Liu"
+    "name": "Stolen from Te-Chi Liu",
+    "name": "Kurt Werle"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/liuderchi/ide-yaml/issues"
+    "url": "https://github.com/kwerle/ide-ruby/issues"
   },
-  "homepage": "https://github.com/liuderchi/ide-yaml#readme",
+  "homepage": "https://github.com/kwerle/ide-ruby#readme",
   "devDependencies": {
     "eslint": "^4.7.1"
   },
   "dependencies": {
-    "atom-languageclient": "^0.6.4",
-    "yaml-language-server": "^0.0.1"
+    "atom-languageclient": "^0.6.4"
+  },
+  "non-dependencies": {
+    "ruby-language-server": "^0.0.1"
   },
   "engines": {
     "atom": ">=1.21.0"
   },
   "enhancedScopes": [
-    "source.yaml"
+    "source.rb"
   ],
   "consumedServices": {
     "linter-indie": {
@@ -76,9 +79,10 @@
     }
   },
   "atomRequirements": [
-    "atom-ide-ui"
+    "atom-ide-ui",
+    "language-ruby"
   ],
   "atomCommands": {
-    "ide-yaml:help": "Provides help information and descriptions of commands."
+    "ide-ruby:help": "Provides help information and descriptions of commands."
   }
 }

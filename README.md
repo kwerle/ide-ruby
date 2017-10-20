@@ -1,5 +1,10 @@
 # STOLEN FROM THE ide-yaml PROJECT!!!  Security!
 
+Uses https://github.com/mtsmfm/language_server-ruby as back end
+
+See https://github.com/mtsmfm/vscode-ruby-lsc/blob/master/src/extension.ts for notes on how the docker image is used from vscode.
+
+
 # ide-yaml
 
 [![apm-download-count][apm-download-count]][apm-download-link]
