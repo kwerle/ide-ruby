@@ -1,0 +1,37 @@
+---
+root: true
+env:
+  browser: true
+  commonjs: true
+  es6: true
+  node: true
+globals:
+  atom: true
+extends:
+  - 'eslint:recommended'
+parserOptions:
+  sourceType: module
+rules:
+  no-console: off
+  no-unused-vars:
+    - warn
+    - vars: all
+      args: after-used
+  comma-dangle:
+    - error
+    -
+      arrays: always-multiline
+      objects: always-multiline
+      functions: ignore
+  indent:
+    - error
+    - 2
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - warn
+    - single
+  semi:
+    - error
+    - never

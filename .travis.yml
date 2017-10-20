@@ -1,0 +1,20 @@
+language: node_js
+
+node_js:
+  - '7'
+
+branches:
+  only:
+  - master
+
+install:
+  - yarn --pure-lockfile
+
+notifications:
+  email:
+    recipients:
+      - liuderchi@gmail.com
+    on_success: never
+    on_failure: change
+
+script: npm run test
