@@ -1,32 +1,33 @@
+const cp = require('child_process')
 const path = require('path')
 const { AutoLanguageClient } = require('atom-languageclient')
 const { registerHelpCommands } = require('./help_cmd')
 const { checkRequirementsThenWelcome } = require('./welcome_notification')
 
-class YAMLLanguageClient extends AutoLanguageClient {
+class RubyLanguageClient extends AutoLanguageClient {
   constructor() {
     super()
+    atom.config.set('core.debugLSP', true)
     registerHelpCommands()
     checkRequirementsThenWelcome()
   }
-  getGrammarScopes () { return ['source.yaml'] }
-  getLanguageName () { return 'YAML' }
-  getServerName () { return 'REDHAT-YAML-LANG-SERVER' }
+  getGrammarScopes () { return ['source.rb', 'source.ruby'] }
+  getLanguageName () { return 'Ruby' }
+  getServerName () { return 'Ruby-lang-server' }
   getConnectionType() { return 'stdio' } // ipc, socket, stdio
 
-  startServerProcess () {
-    return super.spawnChildNode([
-      path.join(
-        __dirname,
-        '../node_modules/yaml-language-server/out/server/src/server.js'
-      ),
-      '--stdio',
-    ]) // --node-ipc, stdio, socket={number}
+  startServerProcess (projectRoot) {
+    const command = atom.config.get('ide-ruby.dockerPath'); // '/usr/local/bin/docker'
+    const image = atom.config.get('ide-ruby.imageName'); // "mtsmfm/language_server-ruby:latest"
+    // const args = ["run", "--rm", "-i", "-v", `${projectRoot}:${projectRoot}`, image];
+    const args = ["run", "--rm", "-i", image];
+
+    // this.logger.debug(`starting "${command} ${args.join(' ')}"`)
+    const childProcess = cp.spawn(command, args, { })
+    this.captureServerErrors(childProcess)
+    return childProcess
   }
 
-  preInitialization (connection) {
-    connection.onCustom('$/partialResult', () => {}) // Suppress partialResult until the language server honours 'streaming' detection
-  }
 }
 
-module.exports = new YAMLLanguageClient()
+module.exports = new RubyLanguageClient()

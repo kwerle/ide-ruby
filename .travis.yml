@@ -13,7 +13,7 @@ install:
 notifications:
   email:
     recipients:
-      - liuderchi@gmail.com
+      - kwerle@gmail.com
     on_success: never
     on_failure: change
 
