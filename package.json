@@ -1,6 +1,6 @@
 {
   "name": "ide-ruby",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Atom-IDE support for ruby language",
   "main": "src/main.js",
   "scripts": {
@@ -16,7 +16,6 @@
     "outline-view"
   ],
   "author": {
-    "name": "Stolen from Te-Chi Liu",
     "name": "Kurt Werle"
   },
   "license": "MIT",
