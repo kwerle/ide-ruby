@@ -17,9 +17,10 @@ class RubyLanguageClient extends AutoLanguageClient {
   getConnectionType() { return 'stdio' } // ipc, socket, stdio
 
   startServerProcess (projectRoot) {
-    const command = '/usr/local/bin/docker'
-    const image = "mtsmfm/language_server-ruby:latest"
-    const args = ["run", "--rm", "-i", "-v", `${projectRoot}:${projectRoot}`, image];
+    const command = atom.config.get('ide-ruby.dockerPath'); // '/usr/local/bin/docker'
+    const image = atom.config.get('ide-ruby.imageName'); // "mtsmfm/language_server-ruby:latest"
+    // const args = ["run", "--rm", "-i", "-v", `${projectRoot}:${projectRoot}`, image];
+    const args = ["run", "--rm", "-i", image];
 
     // this.logger.debug(`starting "${command} ${args.join(' ')}"`)
     const childProcess = cp.spawn(command, args, { })

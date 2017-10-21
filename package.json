@@ -7,7 +7,7 @@
     "lint": "eslint src/",
     "test": "npm run lint"
   },
-  "repository": "https://github.com/liuderchi/ide-ruby.git",
+  "repository": "https://github.com/kwerle/ide-ruby.git",
   "keywords": [
     "ruby",
     "ruby-parsing",
@@ -35,6 +35,18 @@
   },
   "engines": {
     "atom": ">=1.21.0"
+  },
+  "configSchema": {
+    "dockerPath": {
+      "type": "string",
+      "default": "/usr/local/bin/docker",
+      "description": "Absolute path to the docker command"
+    },
+    "imageName": {
+      "type": "string",
+      "default": "mtsmfm/language_server-ruby:latest",
+      "description": "Ruby language server docker image to run"
+    }
   },
   "enhancedScopes": [
     "source.rb"
