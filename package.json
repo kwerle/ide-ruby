@@ -1,7 +1,7 @@
 {
   "name": "ide-ruby",
-  "version": "0.0.1",
-  "description": "Atom-IDE support for ruby language",
+  "version": "0.0.2",
+  "description": "Atom-IDE support for ruby language.  Most of the functionality comes from https://github.com/kwerle/ruby_language_server",
   "main": "src/main.js",
   "scripts": {
     "lint": "eslint src/",
@@ -16,7 +16,6 @@
     "outline-view"
   ],
   "author": {
-    "name": "Stolen from Te-Chi Liu",
     "name": "Kurt Werle"
   },
   "license": "MIT",
@@ -44,8 +43,8 @@
     },
     "imageName": {
       "type": "string",
-      "default": "mtsmfm/language_server-ruby:latest",
-      "description": "Ruby language server docker image to run"
+      "default": "kwerle/ruby_language_server:latest",
+      "description": "Ruby language server docker image to run (was mtsmfm/language_server)"
     }
   },
   "enhancedScopes": [

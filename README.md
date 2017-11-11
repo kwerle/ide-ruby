@@ -10,12 +10,11 @@ Really poor Atom-IDE support for ruby.
 
   - You must have [docker](https://www.docker.com/) installed
   - You must have really low expectations or be willing to help add features
-  - **You must wait for the outline view to say there is no outline available before typing any code or the parser will crash** due to a launch timing issue (pull request pending)
 
 ## Features
 
   - Really bad completion suggestions.
-  - Syntax checking
+  - Outline view
 
 ## FAQ
 
