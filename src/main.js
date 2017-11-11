@@ -1,5 +1,6 @@
 const cp = require('child_process')
 const path = require('path')
+const net = require('net')
 const { AutoLanguageClient } = require('atom-languageclient')
 const { registerHelpCommands } = require('./help_cmd')
 const { checkRequirementsThenWelcome } = require('./welcome_notification')
@@ -7,27 +8,45 @@ const { checkRequirementsThenWelcome } = require('./welcome_notification')
 class RubyLanguageClient extends AutoLanguageClient {
   constructor() {
     super()
-    atom.config.set('core.debugLSP', true)
+    atom.config.set('core.debugLSP', true) // Debug the hell out of this
     registerHelpCommands()
     checkRequirementsThenWelcome()
+    this.busySignalElement = null
   }
+
+  consumeBusySignal (busySignal) {
+    this.busySignal = busySignal
+  }
+
   getGrammarScopes () { return ['source.rb', 'source.ruby'] }
   getLanguageName () { return 'Ruby' }
   getServerName () { return 'Ruby-lang-server' }
   getConnectionType() { return 'stdio' } // ipc, socket, stdio
 
-  startServerProcess (projectRoot) {
-    const command = atom.config.get('ide-ruby.dockerPath'); // '/usr/local/bin/docker'
-    const image = atom.config.get('ide-ruby.imageName'); // "mtsmfm/language_server-ruby:latest"
-    // const args = ["run", "--rm", "-i", "-v", `${projectRoot}:${projectRoot}`, image];
-    const args = ["run", "--rm", "-i", image];
+  startServerProcess(portArgs) {
+    const command = atom.config.get('ide-ruby.dockerPath');
+    const image = atom.config.get('ide-ruby.imageName');
 
-    // this.logger.debug(`starting "${command} ${args.join(' ')}"`)
+    const args = ["run", "--rm", '-i', image];
+
+    this.logger.debug(`starting "${command} ${args.join(' ')}"`)
+
     const childProcess = cp.spawn(command, args, { })
     this.captureServerErrors(childProcess)
+    childProcess.on('error', err => {
+          atom.notifications.addError('Unable to start the ruby language server.', {
+            dismissable: true,
+            buttons: [
+              { text: 'Download docker', onDidClick: () => shell.openExternal('https://docker.com/') },
+              { text: 'Set docker path', onDidClick: () => atom.workspace.open("atom://config/packages/ide-ruby") }
+            ],
+            description: 'Maybe you do not have docker installed?  Or the internet is broken?'
+          })
+        }
+      )
+
     return childProcess
   }
-
 }
 
 module.exports = new RubyLanguageClient()
