@@ -49,7 +49,7 @@
     }
   },
   "enhancedScopes": [
-    "source.rb"
+    "source.ruby"
   ],
   "consumedServices": {
     "linter-indie": {
