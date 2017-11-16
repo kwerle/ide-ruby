@@ -27,6 +27,7 @@ class RubyLanguageClient extends AutoLanguageClient {
     const command = atom.config.get('ide-ruby.dockerPath');
     const image = atom.config.get('ide-ruby.imageName');
 
+    cp.exec(`${command} pull ${image}`) // Update the local image if there is one
     const args = ["run", "--rm", '-i', image];
 
     this.logger.debug(`starting "${command} ${args.join(' ')}"`)
