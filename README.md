@@ -1,10 +1,6 @@
-# Codebase STOLEN FROM THE ide-yaml PROJECT!!!  Security! (but don't blame them)
+## Overview
 
-Uses https://github.com/mtsmfm/language_server-ruby as the back end
-
-See https://github.com/mtsmfm/vscode-ruby-lsc/blob/master/src/extension.ts for notes on how the docker image is used from vscode.
-
-Really poor Atom-IDE support for ruby.
+Virtually all the functionality of this package comes from [ruby_language_server](https://github.com/kwerle/ruby_language_server).
 
 ## Requirements
 
@@ -13,8 +9,9 @@ Really poor Atom-IDE support for ruby.
 
 ## Features
 
-  - Really bad completion suggestions.
+  - Very limited completion suggestions.
   - Outline view
+  - Jump to definition
 
 ## FAQ
 
