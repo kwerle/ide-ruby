@@ -23,8 +23,6 @@ I'm just trying to get the ball rolling.
 
 Do you have docker installed?  Is the path /usr/local/bin/docker?  You can tweak that in the settings...
 
-Did you start typing something before the outline view said there is none available?  Because that will crash the parser which will lock up the editor.
-
 ## License
 
 [MIT License](https://liuderchi.mit-license.org/)
