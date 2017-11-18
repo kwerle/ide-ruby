@@ -39,12 +39,24 @@
     "dockerPath": {
       "type": "string",
       "default": "/usr/local/bin/docker",
-      "description": "Absolute path to the docker command"
+      "description": "Absolute path to the docker command (restart for effect)"
     },
     "imageName": {
       "type": "string",
       "default": "kwerle/ruby_language_server:latest",
-      "description": "Ruby language server docker image to run (was mtsmfm/language_server)"
+      "description": "Ruby language server docker image to run (was mtsmfm/language_server - restart for effect)"
+    },
+    "lintLevel": {
+      "type": "string",
+      "default": "4",
+      "description": "What level of lint do you want to see (restart for effect)?",
+      "enum": [
+        {"value": "0", "description": "None"},
+        {"value": "1", "description": "Just errors"},
+        {"value": "2", "description": "Warnings"},
+        {"value": "3", "description": "Information"},
+        {"value": "4", "description": "Everything including hints"}
+      ]
     }
   },
   "enhancedScopes": [

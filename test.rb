@@ -10,13 +10,13 @@ class Foo
 
   def baz
     this.bar
-    this.ba
+    this.b
   end
 end
 
 class Bar
 
-  def bing
+  def BING
     Foo.new.b
 
   end
