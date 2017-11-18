@@ -12,6 +12,7 @@ Virtually all the functionality of this package comes from [ruby_language_server
   - Very limited completion suggestions.
   - Outline view
   - Jump to definition
+  - Linting
 
 ## FAQ
 
