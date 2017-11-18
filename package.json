@@ -1,6 +1,6 @@
 {
   "name": "ide-ruby",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Atom-IDE support for ruby language.  Most of the functionality comes from https://github.com/kwerle/ruby_language_server",
   "main": "src/main.js",
   "scripts": {
@@ -51,11 +51,26 @@
       "default": "4",
       "description": "What level of lint do you want to see (restart for effect)?",
       "enum": [
-        {"value": "0", "description": "None"},
-        {"value": "1", "description": "Just errors"},
-        {"value": "2", "description": "Warnings"},
-        {"value": "3", "description": "Information"},
-        {"value": "4", "description": "Everything including hints"}
+        {
+          "value": "0",
+          "description": "None"
+        },
+        {
+          "value": "1",
+          "description": "Just errors"
+        },
+        {
+          "value": "2",
+          "description": "Warnings"
+        },
+        {
+          "value": "3",
+          "description": "Information"
+        },
+        {
+          "value": "4",
+          "description": "Everything including hints"
+        }
       ]
     }
   },
