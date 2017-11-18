@@ -12,6 +12,7 @@ Virtually all the functionality of this package comes from [ruby_language_server
   - Very limited completion suggestions.
   - Outline view
   - Jump to definition
+  - Linting
 
 ## FAQ
 
@@ -22,8 +23,6 @@ I'm just trying to get the ball rolling.
 > Why does this crash?
 
 Do you have docker installed?  Is the path /usr/local/bin/docker?  You can tweak that in the settings...
-
-Did you start typing something before the outline view said there is none available?  Because that will crash the parser which will lock up the editor.
 
 ## License
 
