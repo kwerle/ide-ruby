@@ -46,16 +46,24 @@ class RubyLanguageClient extends AutoLanguageClient {
     const childProcess = cp.spawn(command, args, { })
     this.captureServerErrors(childProcess)
     childProcess.on('error', err => {
-          atom.notifications.addError('Unable to start the ruby language server.', {
-            dismissable: true,
-            buttons: [
-              { text: 'Download docker', onDidClick: () => shell.openExternal('https://docker.com/') },
-              { text: 'Set docker path', onDidClick: () => atom.workspace.open("atom://config/packages/ide-ruby") }
-            ],
-            description: 'Maybe you do not have docker installed?  Or the internet is broken?'
-          })
-        }
-      )
+      atom.notifications.addError('Unable to start the ruby language server.', {
+        dismissable: true,
+        buttons: [
+          { text: 'Download docker', onDidClick: () => shell.openExternal('https://docker.com/') },
+          { text: 'Set docker path', onDidClick: () => atom.workspace.open("atom://config/packages/ide-ruby") }
+        ],
+        description: 'Maybe you do not have docker installed?  Or the internet is broken?'
+      })
+    })
+    
+    childProcess.on('exit', err => {
+      this.logger.debug(`docker run exit!!!!!!!!!!!!!!!!!!!!!! ${err}`)
+      atom.notifications.addError('Docker failed to start.', {
+        dismissable: true,
+        description: `This may be beause you launched Atom and Docker at login, and Atom beat docker.  Atom rocks!  I am not clever enough to figure out how to restart it.  You should hit CMD-CTRL-ALT-L once Docker has finished launching.`
+        })
+      }
+    )
 
     return childProcess
   }
