@@ -18,7 +18,7 @@ class RubyLanguageClient extends AutoLanguageClient {
     this.busySignal = busySignal
   }
 
-  getGrammarScopes () { return ['source.rb', 'source.ruby'] }
+  getGrammarScopes () { return ['source.rb', 'source.ruby', 'source.ruby.rails', 'source.ruby.rails.rjs'] }
   getLanguageName () { return 'Ruby' }
   getServerName () { return 'Ruby-lang-server' }
   getConnectionType() { return 'stdio' } // ipc, socket, stdio
@@ -55,13 +55,15 @@ class RubyLanguageClient extends AutoLanguageClient {
         description: 'Maybe you do not have docker installed?  Or the internet is broken?'
       })
     })
-    
+
     childProcess.on('exit', err => {
       this.logger.debug(`docker run exit!!!!!!!!!!!!!!!!!!!!!! ${err}`)
-      atom.notifications.addError('Docker failed to start.', {
-        dismissable: true,
-        description: `This may be beause you launched Atom and Docker at login, and Atom beat docker.  Atom rocks!  I am not clever enough to figure out how to restart it.  You should hit CMD-CTRL-ALT-L once Docker has finished launching.`
-        })
+      if (err == 125) {
+        atom.notifications.addError('Docker failed to start.', {
+          dismissable: true,
+          description: `This may be beause you launched Atom and Docker at login, and Atom beat docker.  Atom rocks!  I am not clever enough to figure out how to restart it; Node, js, and atom coding are not my strengths.  You should hit CMD-CTRL-ALT-L once Docker has finished launching.  And if you rock at some of these atom things, please stop by and contribute code!`
+          })
+      }
       }
     )
 
