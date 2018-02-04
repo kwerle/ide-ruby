@@ -18,7 +18,7 @@ class RubyLanguageClient extends AutoLanguageClient {
     this.busySignal = busySignal
   }
 
-  getGrammarScopes () { return ['source.rb', 'source.ruby'] }
+  getGrammarScopes () { return ['source.rb', 'source.ruby', 'source.ruby.rails', 'source.ruby.rails.rjs'] }
   getLanguageName () { return 'Ruby' }
   getServerName () { return 'Ruby-lang-server' }
   getConnectionType() { return 'stdio' } // ipc, socket, stdio
