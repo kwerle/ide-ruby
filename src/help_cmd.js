@@ -39,7 +39,6 @@ const registerHelpCommands = () => {
   })
 }
 
-
 module.exports = {
   registerHelpCommands,
 }
