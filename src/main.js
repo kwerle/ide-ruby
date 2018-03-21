@@ -23,13 +23,14 @@ class RubyLanguageClient extends AutoLanguageClient {
   getServerName () { return 'Ruby-lang-server' }
   getConnectionType() { return 'stdio' } // ipc, socket, stdio
 
-  startServerProcess(portArgs) {
+  startServerProcess(projectPath) {
     const command = atom.config.get('ide-ruby.dockerPath');
     const image = atom.config.get('ide-ruby.imageName');
     const lintLevel = atom.config.get('ide-ruby.lintLevel');
 
     // Update the local image if there is one - this won't update until next run.  I wish there were docker run --pull
     const updateCommand = `${command} pull ${image}`;
+    this.logger.debug(`updateCommand ${updateCommand}`)
     cp.exec(updateCommand, (error, stdout, stderr) => {
       if (error) {
         this.logger.error(`${updateCommand} exec error: ${error}`);
@@ -39,7 +40,9 @@ class RubyLanguageClient extends AutoLanguageClient {
       this.logger.debug(`${updateCommand} stderr: ${stderr}`);
     });
 
-    const args = ["run", "--rm", '-i', '-e', `LINT_LEVEL=${lintLevel}`, image];
+    const projectDirectory = projectPath;
+
+    const args = ["run", "--rm", '-i', '-v', `${projectDirectory}:/project:ro,z`, '-w', '/project', '-e', `LINT_LEVEL=${lintLevel}`, image];
 
     this.logger.debug(`starting "${command} ${args.join(' ')}"`)
 
