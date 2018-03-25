@@ -46,17 +46,17 @@ class RubyLanguageClient extends AutoLanguageClient {
 
     this.logger.debug(`starting "${command} ${args.join(' ')}"`)
 
-    const childProcess = cp.spawn(command, args, { })
+    var childProcess
+    try {
+      childProcess = cp.spawn(command, args, { })
+    } catch (e) {
+      this.logger.error(`error "${e}"`)
+      this.reportLaunchError(e)
+      return
+    }
     this.captureServerErrors(childProcess)
     childProcess.on('error', err => {
-      atom.notifications.addError('Unable to start the ruby language server.', {
-        dismissable: true,
-        buttons: [
-          { text: 'Download docker', onDidClick: () => shell.openExternal('https://docker.com/') },
-          { text: 'Set docker path', onDidClick: () => atom.workspace.open("atom://config/packages/ide-ruby") }
-        ],
-        description: 'Maybe you do not have docker installed?  Or the internet is broken?'
-      })
+      this.reportLaunchError(err)
     })
 
     childProcess.on('exit', err => {
@@ -71,6 +71,17 @@ class RubyLanguageClient extends AutoLanguageClient {
     )
 
     return childProcess
+  }
+
+  reportLaunchError(error) {
+    atom.notifications.addError(`Unable to start the ruby language server: ${error}.`, {
+      dismissable: true,
+      buttons: [
+        { text: 'Download docker', onDidClick: () => shell.openExternal('https://docker.com/') },
+        { text: 'Set docker path', onDidClick: () => atom.workspace.open("atom://config/packages/ide-ruby") }
+      ],
+      description: 'Maybe you do not have docker installed?  Or the internet is broken?  Or it is not running?'
+    })
   }
 }
 
