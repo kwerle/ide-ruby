@@ -1,6 +1,6 @@
 git hf release start X.Y.Z (next version)
 
-apm publish
+apm publish [<newversion> | major | minor | patch | build]
 
 git commit -am Bump
 
