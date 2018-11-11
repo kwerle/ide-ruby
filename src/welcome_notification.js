@@ -1,4 +1,5 @@
 // show welcome message on first installation
+const atomPackageDeps = require('atom-package-deps')
 const path = require('path')
 const fs = require('fs')
 const packageJSON = require('../package.json')
@@ -53,6 +54,7 @@ const checkRequirementsThenWelcome = () => {
   try {
     fs.accessSync(REQUIREMENTS_CHECK_PASSED)
   } catch (err) {
+    atomPackageDeps.install('ide-ruby', /* promptUser */ true)
     if (requirements.every(req => atom.packages.isPackageLoaded(req))) {
       atom.notifications.addSuccess(
         generateWelcomeMsg(),

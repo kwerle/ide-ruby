@@ -28,8 +28,12 @@
     "eslint": "^4.7.1"
   },
   "dependencies": {
+    "atom-package-deps": "4.6.0",
     "atom-languageclient": "^0.9.5"
   },
+  "package-deps": [
+    "atom-ide-ui"
+  ],
   "non-dependencies": {
     "ruby-language-server": "^0.0.1"
   },
