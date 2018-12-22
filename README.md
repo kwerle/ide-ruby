@@ -4,6 +4,9 @@ Virtually all the functionality of this package comes from [ruby_language_server
 
 The first time this fires up (and any time you clear your docker images), the docker image will need to be downloaded - and that may take a few minutes.
 
+Install it, check out a ruby file, and do Outline View: Toggle (alt-o for me).
+Also View -> Toggle Diagnostics (alt-shift-d)
+
 ## Requirements
 
   - You must have [docker](https://www.docker.com/) installed
@@ -11,7 +14,7 @@ The first time this fires up (and any time you clear your docker images), the do
 
 ## Features
 
-  - Very limited completion suggestions.
+  - Completion suggestions
   - Outline view
   - Jump to definition
   - Linting using rubocop

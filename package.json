@@ -1,6 +1,6 @@
 {
   "name": "ide-ruby",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Atom-IDE support for ruby language.  Requires docker.  Most of the functionality comes from https://github.com/kwerle/ruby_language_server",
   "main": "src/main.js",
   "scripts": {
@@ -50,6 +50,11 @@
       "type": "string",
       "default": "kwerle/ruby_language_server:latest",
       "description": "Ruby language server docker image to run (was mtsmfm/language_server - restart for effect)"
+    },
+    "additionalGems": {
+      "type": "string",
+      "default": "",
+      "description": "If you use additional gems with rubocop - like rubocop-rspec, you should list them comma separated here.  Note that this will cause these gems to get installed (in the docker image) every time you open a project..."
     },
     "lintLevel": {
       "type": "string",

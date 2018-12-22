@@ -13,9 +13,10 @@ const generateWelcomeMsg = () => {
   const grammarName = enhancedScopes[0].split('.')[1].toUpperCase()
   return `## Welcome to ${pkgName}\n\nQuick start:\n${[
     `Open ${grammarName} file from your Project`,
-    'Dispatch command `Outline View: Toggle`',
+    'Outline View: Toggle (alt-o normally)',
+    'Diagnostics: Toggle Table (alt-shift-d)',
   ].map((str, i) => `${i}. ${str}\n`).join('')
-  }\nHappy Using Atom IDE : )`
+  }\nHappy Atom IDE'ing : )`
 }
 
 const generateWarnMsg = () => {
