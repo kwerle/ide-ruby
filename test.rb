@@ -18,7 +18,6 @@ class Bar
 
   def BING
     Foo.new.b
-
   end
 
 end
