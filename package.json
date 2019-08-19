@@ -14,6 +14,7 @@
     "ruby-parsing",
     "ide",
     "language-server-protocol",
+    "languageserver",
     "outline-view"
   ],
   "author": {
@@ -25,17 +26,17 @@
   },
   "homepage": "https://github.com/kwerle/ide-ruby#readme",
   "devDependencies": {
-    "eslint": "^4.7.1"
+    "eslint": ">=4.7.1"
   },
   "dependencies": {
-    "atom-package-deps": "4.6.0",
-    "atom-languageclient": "^0.9.5"
+    "atom-package-deps": ">=4.6.0",
+    "atom-languageclient": ">=0.9.5"
   },
   "package-deps": [
     "atom-ide-ui"
   ],
   "non-dependencies": {
-    "ruby-language-server": "^0.0.1"
+    "ruby-language-server": ">=0.0.1"
   },
   "engines": {
     "atom": ">=1.21.0"
