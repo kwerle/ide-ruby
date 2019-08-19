@@ -1,0 +1,14 @@
+The makefile exists for convenience - since I don't have node installed.
+
+Edit the package.json if needed.  `make shell`.  `yarn` in the shell.
+
+You may need to move the existing ide-ruby out of the way:
+`mv ~/.atom/packages/ide-ruby /tmp` (or somewhere)
+
+`atom link`
+
+atom .
+
+Edit away.
+
+Reload Window (cmd-opt-ctrl-l)
