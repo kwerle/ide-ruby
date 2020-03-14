@@ -1,6 +1,6 @@
 const cp = require('child_process')
-const path = require('path')
-const net = require('net')
+// const path = require('path')
+// const net = require('net')
 const { AutoLanguageClient } = require('atom-languageclient')
 const { registerHelpCommands } = require('./help_cmd')
 const { checkRequirementsThenWelcome } = require('./welcome_notification')
@@ -27,7 +27,7 @@ class RubyLanguageClient extends AutoLanguageClient {
     this.dockerStartAttempts = 0
     const dockerPromise = new Promise((resolve, reject) => {
       this.checkOnDocker(resolve, reject)
-    }).then((result) => {
+    }).then((_result) => {
       this.updateDockerImage()
       return this.runDocker(projectPath)
     })
@@ -39,22 +39,22 @@ class RubyLanguageClient extends AutoLanguageClient {
   }
 
   dockerImage() {
-    return atom.config.get('ide-ruby.imageName');
+    return atom.config.get('ide-ruby.imageName')
   }
 
   checkOnDocker(resolve, reject) {
     // Update the local image if there is one - this won't update until next run.  I wish there were docker run --pull
-    const updateCommand = `${this.dockerCommand()} ps`;
+    const updateCommand = `${this.dockerCommand()} ps`
     this.dockerStartAttempts = this.dockerStartAttempts + 1
     this.logger.debug(`updateCommand ${updateCommand}`)
     const childProcess = cp.exec(updateCommand, (error, stdout, stderr) => {
       if (error) {
-        this.logger.error(`${updateCommand} exec error: ${error}`);
-        return;
+        this.logger.error(`${updateCommand} exec error: ${error}`)
+        return
       }
-      this.logger.debug(`${updateCommand} stdout: ${stdout}`);
-      this.logger.debug(`${updateCommand} stderr: ${stderr}`);
-    });
+      this.logger.debug(`${updateCommand} stdout: ${stdout}`)
+      this.logger.debug(`${updateCommand} stderr: ${stderr}`)
+    })
 
     childProcess.on('exit', err => {
       if (err == 0) {
@@ -68,7 +68,7 @@ class RubyLanguageClient extends AutoLanguageClient {
       } else {
         atom.notifications.addError('Docker failed to start.', {
           dismissable: true,
-          description: `Maybe docker was not running?  You should hit CMD-CTRL-ALT-L once Docker has finished launching.`
+          description: 'Maybe docker was not running?  You should hit CMD-CTRL-ALT-L once Docker has finished launching.',
         })
         reject(`Docker failed to pull ide-ruby image ${this.dockerImage()}: ${err}`)
       }
@@ -77,25 +77,25 @@ class RubyLanguageClient extends AutoLanguageClient {
 
   updateDockerImage() {
     // Update the local image if there is one - this won't update until next run.  I wish there were docker run --pull
-    const updateCommand = `${this.dockerCommand()} pull ${this.dockerImage()}`;
+    const updateCommand = `${this.dockerCommand()} pull ${this.dockerImage()}`
     this.dockerStartAttempts = this.dockerStartAttempts + 1
     this.logger.debug(`updateCommand ${updateCommand}`)
     cp.exec(updateCommand, (error, stdout, stderr) => {
       if (error) {
-        this.logger.error(`${updateCommand} exec error: ${error}`);
-        return;
+        this.logger.error(`${updateCommand} exec error: ${error}`)
+        return
       }
-      this.logger.debug(`${updateCommand} stdout: ${stdout}`);
-      this.logger.debug(`${updateCommand} stderr: ${stderr}`);
-    });
+      this.logger.debug(`${updateCommand} stdout: ${stdout}`)
+      this.logger.debug(`${updateCommand} stderr: ${stderr}`)
+    })
   }
 
   runDocker(projectPath) {
-    const lintLevel = atom.config.get('ide-ruby.lintLevel');
-    const additionalGems = atom.config.get('ide-ruby.additionalGems');
+    const lintLevel = atom.config.get('ide-ruby.lintLevel')
+    const additionalGems = atom.config.get('ide-ruby.additionalGems')
     const command = this.dockerCommand()
 
-    const args = ["run", "--rm", '-i', '-v', `${projectPath}:/project:ro,z`, '-w', '/project', '-e', `LINT_LEVEL=${lintLevel}`, '-e', `ADDITIONAL_GEMS=${additionalGems}`, this.dockerImage()];
+    const args = ['run', '--rm', '-i', '-v', `${projectPath}:/project:ro,z`, '-w', '/project', '-e', `LINT_LEVEL=${lintLevel}`, '-e', `ADDITIONAL_GEMS=${additionalGems}`, this.dockerImage()]
     var childProcess
     this.logger.debug(`starting "${command} ${args.join(' ')}"`)
     try {
@@ -113,10 +113,10 @@ class RubyLanguageClient extends AutoLanguageClient {
       if (err > 0) { // 125 means docker failed
         atom.notifications.addError('Docker exited!', {
           dismissable: true,
-          description: `Maybe you restarted docker.  Hit cmd-opt-ctrl-l to restart (Reload Window)`
-          })
-        }
+          description: 'Maybe you restarted docker.  Hit cmd-opt-ctrl-l to restart (Reload Window)',
+        })
       }
+    }
     )
     return childProcess
   }
@@ -126,9 +126,9 @@ class RubyLanguageClient extends AutoLanguageClient {
       dismissable: true,
       buttons: [
         { text: 'Download docker', onDidClick: () => shell.openExternal('https://docker.com/') },
-        { text: 'Set docker path', onDidClick: () => atom.workspace.open("atom://config/packages/ide-ruby") }
+        { text: 'Set docker path', onDidClick: () => atom.workspace.open('atom://config/packages/ide-ruby') },
       ],
-      description: 'Maybe you do not have docker installed?  Or the internet is broken?  Or it is not running?'
+      description: 'Maybe you do not have docker installed?  Or the internet is broken?  Or it is not running?',
     })
   }
 }
