@@ -2,3 +2,4 @@ node_modules
 npm-debug.log
 package-lock.json
 REQUIREMENTS_CHECK_PASSED
+yarn-error.log
