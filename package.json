@@ -1,6 +1,6 @@
 {
   "name": "ide-ruby",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Atom-IDE support for ruby language.  Requires docker.  Most of the functionality comes from https://github.com/kwerle/ruby_language_server",
   "main": "src/main.js",
   "scripts": {
