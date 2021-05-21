@@ -1,5 +1,7 @@
 ## Overview
 
+I no longer use Atom, and it seems like MS no longer updates it.  It seems the last update was 3 years ago.  I will not continue to maintain this package.
+
 Implementation of the [language server protocol](https://microsoft.github.io/language-server-protocol/) for [Ruby](https://www.ruby-lang.org/en/) on [Atom](https://atom.io/).
 
 Virtually all the functionality of this package comes from [ruby_language_server](https://github.com/kwerle/ruby_language_server).
