@@ -27,3 +27,9 @@ build:
 
 shell: build
 	docker run -it --rm $(LOCAL_LINK) $(PROJECT_NAME) sh
+
+
+cross_platform_image:
+	(docker buildx ls | grep mybuilder) || docker buildx create --name mybuilder
+	docker buildx use mybuilder
+	docker buildx build --platform linux/amd64,linux/arm64 -t $(PROJECT_NAME) .
