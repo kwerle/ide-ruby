@@ -29,8 +29,8 @@
     "eslint": ">=4.7.1"
   },
   "dependencies": {
-    "atom-package-deps": ">=4.6.0",
-    "atom-languageclient": ">=0.9.5"
+    "atom-languageclient": ">=0.9.5",
+    "atom-package-deps": ">=4.6.0"
   },
   "package-deps": [
     "atom-ide-ui"
